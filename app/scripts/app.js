@@ -15,6 +15,12 @@ mov.controller('MainCtrl', function ($scope, $http, GetRawList) {
       });
     });
   });
+  $scope.metacriticBar = function(score){
+    return { 'width' : score + '%' }
+  }
+  $scope.imdbBar = function(score){
+    return { 'width' : score * 10 + '%' }
+  }
 });
 
 /* End Controllers */

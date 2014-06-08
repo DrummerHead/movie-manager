@@ -1,90 +1,149 @@
 // bower:scss
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+/* Moviessss yey! */
 
-/* Space out content a bit */
+/* Mixins
+ * ========================== */
+
+.clearfix {
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.unlistify {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+/* end Mixins */
+
+
+
+
+/* Baseline
+ * ========================== */
+
+html {
+  font-size: 1.2em;
+  font-family: sans-serif;
+  color: #222;
+}
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin: 0;
+  background-color: #d7d7d7;
+}
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/* end Basline */
+
+
+
+
+/* Persistent
+ * ========================== */
+
+main {
+}
+.vessel {
+  padding: 1.4em;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+#movies {
+  margin: 0 -1em;
+  @extend .unlistify;
+  @extend .clearfix;
 }
+#movies > li {
+  float: left;
+  width : 33.3333333333333333%;
+  padding: 1em;
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+  &:nth-child(3n+1){
+    clear: left;
   }
 }
+/* end Persistent */
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+
+
+
+/* Modular
+ * ========================== */
+
+.movie {
+  width: 100%;
+  float: left;
+  padding: .6em;
+  background-color: #fff;
 }
-
-.container-narrow > hr {
-  margin: 30px 0;
+.poster,
+.data {
+  float: left;
 }
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
+.poster {
 }
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
+.poster a {
 }
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+.poster img {
+  display: block;
 }
+.data {
+  max-width: calc(100% - 16.7em);
+  margin: 0 0 0 1em;
+}
+.data header {
+}
+.data header h2 {
+}
+.data header h2 span {
+}
+.scores {
+}
+.scores s {
+}
+.scores u {
+}
+.scores b {
+}
+.imdb {
+}
+.metacritic {
+}
+.actors {
+}
+.actors p {
+}
+.plot {
+}
+.plot p {
+}
+.details {
+}
+.details li {
+}
+/* end Modular */
+
+
+
+
+/* Responsive
+ * ========================== */
+
+/* end Responsive */
+
+
+
+
+/* x
+ * ========================== */
+
+/* end x */
