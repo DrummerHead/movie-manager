@@ -15,6 +15,14 @@ mov.controller('MainCtrl', function ($scope, $http, GetRawList) {
       });
     });
   });
+  $scope.validateMetascore = function(score){
+    if(score === "N/A"){
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
   $scope.metacriticBar = function(score){
     return { 'width' : score + '%' }
   }

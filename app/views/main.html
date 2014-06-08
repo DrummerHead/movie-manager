@@ -20,7 +20,7 @@
               <b>{{movie.imdbRating}}</b>
             </s>
           </div>
-          <div class='rect'>
+          <div class='rect' ng-show='validateMetascore("{{movie.Metascore}}")'>
             <s class='metacritic' ng-style='metacriticBar({{movie.Metascore}})'>
               <u>Metascore</u>
               <b>{{movie.Metascore}}%</b>
