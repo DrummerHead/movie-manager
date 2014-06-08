@@ -112,10 +112,11 @@ main {
   margin: 0 0 0 1em;
 }
 .data header {
-  margin: .3em 0 .7em 0 ;
+  margin: .4em 0 .75em 0;
 }
 .data header h2 {
   font-size: 1.4em;
+  line-height: 1.2;
   margin: 0;
 }
 .data header h2 span {
@@ -148,17 +149,31 @@ main {
 }
 .metacritic {
 }
-.actors {
+.text-block {
+  border-bottom: 1px solid #ccc;
+  padding: 0;
 }
-.actors p {
+.text-block p {
+  margin: 1em 0;
 }
-.plot {
-}
-.plot p {
+.smaller {
+  font-size: .87em;
 }
 .details {
+  padding: 1em 0;
+  @extend .clearfix;
+  @extend .unlistify;
 }
 .details li {
+  float: left;
+  &:after {
+    content: '\b7';
+    margin: 0 .5em;
+  }
+  &:last-child:after {
+    content: '';
+    margin: auto;
+  }
 }
 /* end Modular */
 
