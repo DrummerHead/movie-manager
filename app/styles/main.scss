@@ -3,6 +3,16 @@
 
 /* Moviessss yey! */
 
+
+/* vars
+ * ========================== */
+
+$barBlue: #00399b;
+$docColor: #222;
+
+/* end vars */
+
+
 /* Mixins
  * ========================== */
 
@@ -31,8 +41,9 @@
 
 html {
   font-size: 1.2em;
+  line-height: 1.4;
   font-family: sans-serif;
-  color: #222;
+  color: $docColor;
 }
 body {
   margin: 0;
@@ -101,18 +112,37 @@ main {
   margin: 0 0 0 1em;
 }
 .data header {
+  margin: .3em 0 .7em 0 ;
 }
 .data header h2 {
+  font-size: 1.4em;
+  margin: 0;
 }
 .data header h2 span {
+  font-weight: normal;
+  color: lighten($docColor, 33);
 }
 .scores {
 }
-.scores s {
+.rect {
+  margin: 0 0 .5em 0;
+  background-color: lighten($barBlue, 65);
+  border: 1px solid $barBlue;
+  line-height: 1.6em;
 }
-.scores u {
+.rect s {
+  display: block;
+  padding: .1em .5em 0;
+  background-color: $barBlue;
+  color: #fff;
+  text-decoration: none;
+  @extend .clearfix;
 }
-.scores b {
+.rect u {
+  text-decoration: none;
+}
+.rect b {
+  float: right;
 }
 .imdb {
 }

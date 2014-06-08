@@ -14,20 +14,24 @@
           <h2>{{movie.Title}} <span>{{movie.Year}}</span></h2>
         </header>
         <div class='scores'>
-          <s class='imdb' ng-style='imdbBar({{movie.imdbRating}})'>
-            <u>imdb</u>
-            <b>{{movie.imdbRating}}</b>
-          </s>
-          <s class='metacritic' ng-style='metacriticBar({{movie.Metascore}})'>
-            <u>metacritic</u>
-            <b>{{movie.Metascore}}</b>
-          </s>
-        </div>
-        <div class='actors'>
-          <p>{{movie.Actors}}</p>
+          <div class='rect'>
+            <s class='imdb' ng-style='imdbBar({{movie.imdbRating}})'>
+              <u>IMDB</u>
+              <b>{{movie.imdbRating}}</b>
+            </s>
+          </div>
+          <div class='rect'>
+            <s class='metacritic' ng-style='metacriticBar({{movie.Metascore}})'>
+              <u>Metascore</u>
+              <b>{{movie.Metascore}}%</b>
+            </s>
+          </div>
         </div>
         <div class='plot'>
           <p>{{movie.Plot}}</p>
+        </div>
+        <div class='actors'>
+          <p>{{movie.Actors}}</p>
         </div>
         <ul class='details'>
           <li>{{movie.Genre}}</li>
