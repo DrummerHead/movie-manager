@@ -2,7 +2,7 @@
 <h1>Movies to watch!</h1>
 
 <ul id='movies'>
-  <li data-ng-repeat='movie in movies'>
+  <li data-ng-repeat='movie in movies | orderBy : orderMovies("imdbRating", true)'>
     <div class='movie'>
       <div class='poster'>
         <a href='http://www.imdb.com/title/{{movie.imdbID}}/'>

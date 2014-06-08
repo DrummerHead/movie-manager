@@ -5,7 +5,7 @@ var mov = angular.module('mov', []);
 /* Controllers
  * ========================================= */
 
-mov.controller('MainCtrl', function ($scope, $http, GetRawList) {
+mov.controller('MainCtrl', function ($scope, $http, $filter, GetRawList) {
   GetRawList.getRaw().then(function(data){
     $scope.rawMovies = data;
     $scope.movies = [];
@@ -28,6 +28,11 @@ mov.controller('MainCtrl', function ($scope, $http, GetRawList) {
   }
   $scope.imdbBar = function(score){
     return { 'width' : score * 10 + '%' }
+  }
+
+  var orderBy = $filter('orderBy');
+  $scope.orderMovies = function(predicate, reverse){
+    $scope.movies = orderBy($scope.movies, predicate, reverse);
   }
 });
 
