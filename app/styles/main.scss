@@ -103,10 +103,25 @@ main {
 .poster {
 }
 .poster a {
+  display: block;
+  width: 16em;
+  min-height: 25em;
+  position: relative;
 }
 .poster img {
-  display: block;
-  max-width: 16em;
+  position: absolute;
+  width: 100%;
+  z-index: 7;
+  -webkit-transition: all 500ms ease-in-out;
+     -moz-transition: all 500ms ease-in-out;
+          transition: all 500ms ease-in-out;
+
+  &:hover {
+    width: auto;
+    max-width: 41em;
+    z-index: 77;
+    box-shadow: 0 0 1em rgba(0, 0, 0, .5);
+  }
 }
 .data {
   max-width: calc(100% - 16em);
