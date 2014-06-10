@@ -69,14 +69,14 @@ main {
 }
 
 #movies {
-  margin: 0 -1em;
+  margin: 0 -.75em;
   @extend .unlistify;
   @extend .clearfix;
 }
 #movies > li {
   float: left;
   width : 33.3333333333333333%;
-  padding: 1em;
+  padding: .75em;
 
   &:nth-child(3n+1){
     clear: left;
@@ -93,7 +93,7 @@ main {
 .movie {
   width: 100%;
   float: left;
-  padding: .6em;
+  padding: .75em;
   background-color: #fff;
 }
 .poster,
@@ -106,10 +106,11 @@ main {
 }
 .poster img {
   display: block;
+  max-width: 16em;
 }
 .data {
-  max-width: calc(100% - 16.7em);
-  margin: 0 0 0 1em;
+  max-width: calc(100% - 16em);
+  padding: 0 0 0 .75em;
 }
 .data header {
   margin: .4em 0 .75em 0;

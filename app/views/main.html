@@ -4,11 +4,8 @@
 <ul id='movies'>
   <li data-ng-repeat='movie in movies | orderBy : orderMovies("imdbRating", true)'>
     <div class='movie'>
-      <div class='poster'>
-        <a href='http://www.imdb.com/title/{{movie.imdbID}}/'>
-          <img src='{{movie.Poster}}' alt='{{movie.Title}}'>
-        </a>
-      </div>
+      <movie-poster movie='movie'>
+      </movie-poster>
       <div class='data'>
         <header>
           <h2>{{movie.Title}} <span>{{movie.Year}}</span></h2>
