@@ -11,7 +11,7 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList) {
     $scope.rawMovies = data;
     $scope.movies = [];
     $scope.rawMovies.forEach(function(el, i){
-      $http.jsonp('http://www.omdbapi.com/?i=' + el + '&callback=JSON_CALLBACK').then(function(result){
+      $http.jsonp('http://www.omdbapi.com/?i=' + el.id + '&callback=JSON_CALLBACK').then(function(result){
         $scope.movies.push(result.data);
       });
     });

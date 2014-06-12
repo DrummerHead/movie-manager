@@ -1,14 +1,17 @@
 #!/usr/bin/env ruby
 
-find_omdb = %x[find .. -name "*.omdb"].split("\n")
-find_omdb_watched = %x[find ../_watched -name "*.omdb"].split("\n")
+omdb_paths = %x[find .. -name "*.omdb"].split("\n").reject{ |path| path =~ /_watched/}
 
-def get_id_array(find_result)
-  find_result.map{ |line|
-    line.gsub(/^\.\.\/(_watched\/)?[^\/]*\/([^.]*)\.omdb/, '\2')
-  }
+movies_json = omdb_paths.map.with_index do |path, index|
+  file = File.read(path)
+
+  if index == 0
+    "[" + file + ","
+  elsif index == omdb_paths.length - 1
+    file + "]"
+  else
+    file + ","
+  end
 end
 
-unwatched_movies = get_id_array(find_omdb) - get_id_array(find_omdb_watched)
-
-File.write("app/scripts/movies.json", unwatched_movies)
+File.write("app/scripts/movies.json", movies_json.reduce(:+))
