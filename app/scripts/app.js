@@ -5,13 +5,14 @@ var mov = angular.module('mov', []);
 /* Controllers
  * ========================================= */
 
-mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList) {
+mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, SuitableFor) {
 
   GetRawList.getRaw().then(function(data){
     $scope.rawMovies = data;
     $scope.movies = [];
     $scope.rawMovies.forEach(function(el, i){
       $http.jsonp('http://www.omdbapi.com/?i=' + el.id + '&callback=JSON_CALLBACK').then(function(result){
+        result.data.suitable = el.suitable;
         $scope.movies.push(result.data);
       });
     });
@@ -34,11 +35,19 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList) {
     return { 'width' : score * 10 + '%' }
   }
 
+  $scope.suitableFor = SuitableFor;
+
   var orderBy = $filter('orderBy');
   $scope.orderMovies = function(predicate, reverse){
     $scope.movies = orderBy($scope.movies, predicate, reverse);
   }
 });
+
+mov.controller('HeaderCtrl', function($scope, SuitableFor) {
+  $scope.humans = ['', 'Mom', 'DH', 'Pablo', 'Samus'];
+  $scope.suitableFor = SuitableFor;
+});
+
 
 /* End Controllers */
 
@@ -76,6 +85,12 @@ mov.factory('GetRawList', function($http){
         return result.data;
       });
     }
+  };
+});
+
+mov.factory('SuitableFor', function(){
+  return {
+    selected: ''
   };
 });
 

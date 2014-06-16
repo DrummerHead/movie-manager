@@ -44,6 +44,7 @@ html {
   line-height: 1.4;
   font-family: sans-serif;
   color: $docColor;
+  overflow-y: scroll;
 }
 body {
   margin: 0;
@@ -66,6 +67,9 @@ main {
 }
 .vessel {
   padding: 1.4em;
+}
+header .vessel {
+  padding-bottom: 0;
 }
 
 #movies {
