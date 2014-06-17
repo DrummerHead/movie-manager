@@ -13,6 +13,9 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
     $scope.rawMovies.forEach(function(el, i){
       $http.jsonp('http://www.omdbapi.com/?i=' + el.id + '&callback=JSON_CALLBACK').then(function(result){
         result.data.suitable = el.suitable;
+        if(result.data.imdbRating == "N/A"){
+          result.data.imdbRating = 0;
+        };
         $scope.movies.push(result.data);
       });
     });
@@ -32,7 +35,7 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
   }
 
   $scope.imdbBar = function(score){
-    return { 'width' : score * 10 + '%' }
+    return { 'width' : score == 0 ? '100%' : score * 10 + '%' }
   }
 
   $scope.suitableFor = SuitableFor;
