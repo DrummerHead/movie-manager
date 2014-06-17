@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+suitable = {
+ Mom: false,
+ DH: false,
+ Pablo: false,
+ Samus:  false
+}
+
+
+puts "Movie ID:\n"
+mid = gets.chomp
+
+def check_suitable(human, hash)
+  print "\n#{human}? (Y/N) "
+
+  answer = gets.chomp
+
+  if answer =~ /^y(es)?$/i
+    hash[human] = true
+  elsif answer =~ /^no?$/i
+    hash[human] = false
+  else
+    puts "Please answer with y or n"
+    check_suitable(human, hash)
+  end
+end
+
+puts "Suitable for..."
+
+suitable.each do |human, value|
+  check_suitable(human, suitable)
+end
+
+def write_suitables_array(hash)
+  new_array = hash.reject{ |key, value| !value }.map{ |key, value| key.to_s }
+  if new_array.empty?
+    [""]
+  else
+    new_array
+  end
+end
+
+omdb_file = %Q({
+  "id" : "#{mid}",
+  "suitable" : #{write_suitables_array(suitable)}
+}
+)
+
+File.write("#{mid}.omdb", omdb_file)
+puts "\n\nFile #{mid}.omdb written in place.\n\n"
