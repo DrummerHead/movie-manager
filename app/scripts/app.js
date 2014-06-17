@@ -73,8 +73,20 @@ mov.directive('moviePoster', function(){
   };
 });
 
-
 /* End Directives */
+
+
+
+
+/* Filters
+ * ========================================= */
+
+mov.filter('encodeUri', function ($window) {
+  return $window.encodeURIComponent;
+});
+
+/* End Filters */
+
 
 
 
