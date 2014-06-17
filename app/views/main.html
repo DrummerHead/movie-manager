@@ -1,6 +1,6 @@
 <div class='vessel'>
 <ul id='movies'>
-  <li data-ng-repeat='movie in movies | filter : { suitable : suitableFor.selected } | orderBy : orderMovies("imdbRating", true)'>
+  <li data-ng-repeat='movie in movies | filter : { suitable : suitableFor.selected } | orderBy : orderMovies(["imdbRating", "Metascore"], true)'>
     <div class='movie'>
       <movie-poster movie='movie'>
       </movie-poster>
