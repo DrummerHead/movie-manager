@@ -97,6 +97,7 @@ header .vessel {
 .movie {
   width: 100%;
   float: left;
+  position: relative;
   padding: .75em;
   background-color: #fff;
 }
@@ -105,30 +106,28 @@ header .vessel {
   float: left;
 }
 .poster {
+  width: 42%;
 }
 .poster a {
   display: block;
-  width: 16em;
   min-height: 25em;
-  position: relative;
 }
 .poster img {
   position: absolute;
-  width: 100%;
+  width: 40%;
   z-index: 7;
-  -webkit-transition: all 500ms ease-in-out;
-     -moz-transition: all 500ms ease-in-out;
-          transition: all 500ms ease-in-out;
+  -webkit-transition: all 250ms ease-in-out;
+     -moz-transition: all 250ms ease-in-out;
+          transition: all 250ms ease-in-out;
 
   &:hover {
-    width: auto;
-    max-width: 41em;
     z-index: 77;
+    width: 96.6%;
     box-shadow: 0 0 1em rgba(0, 0, 0, .5);
   }
 }
 .data {
-  max-width: calc(100% - 16em);
+  width: 57%;
   padding: 0 0 0 .75em;
 }
 .data header {
