@@ -21,14 +21,6 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
     });
   });
 
-  $scope.validateMetascore = function(score){
-    if(score === "N/A"){
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
 
   $scope.metacriticBar = function(score){
     return { 'width' : score + '%' }
@@ -63,12 +55,40 @@ mov.controller('HeaderCtrl', function($scope, SuitableFor) {
 mov.directive('moviePoster', function(){
   return {
     restrict: 'E',
+    replace: true,
     scope: {
       movie: '='
     },
     templateUrl: 'templates/movie-poster.html',
     controller: function($scope){
       $scope.movie.Poster = $scope.movie.Poster.replace(/\._V1_SX300/g, '');
+    }
+  };
+});
+
+mov.directive('bar', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      scoreValue: '@',
+      scoreLabel: '@',
+      scoreType: '@'
+    },
+    templateUrl: 'templates/bar.html',
+    controller: function($scope){
+      $scope.validateScore = function(score){
+        if(score === "N/A"){
+          return false;
+        }
+        else {
+          return true;
+        }
+      };
+      $scope.barWidth = function(score){
+        console.log(score)
+        return { 'width' : score + '%' }
+      }
     }
   };
 });
@@ -85,6 +105,11 @@ mov.filter('encodeUri', function ($window) {
   return $window.encodeURIComponent;
 });
 
+mov.filter('parseFloat', function () {
+  return function(input, multiplyByTen){
+    return multiplyByTen ? (parseFloat(input) * 10) : (parseFloat(input))
+  };
+});
 /* End Filters */
 
 
