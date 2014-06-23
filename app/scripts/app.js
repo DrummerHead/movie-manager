@@ -10,12 +10,12 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
   GetRawList.getRaw().then(function(data){
     $scope.rawMovies = data;
     $scope.movies = [];
-    $scope.rawMovies.forEach(function(el, i){
+    $scope.rawMovies.forEach(function(el){
       $http.jsonp('http://www.omdbapi.com/?i=' + el.id + '&callback=JSON_CALLBACK').then(function(result){
         result.data.suitable = el.suitable;
-        if(result.data.imdbRating == "N/A"){
+        if(result.data.imdbRating === 'N/A'){
           result.data.imdbRating = 0;
-        };
+        }
         $scope.movies.push(result.data);
       });
     });
@@ -23,19 +23,19 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
 
 
   $scope.metacriticBar = function(score){
-    return { 'width' : score + '%' }
-  }
+    return { 'width' : score + '%' };
+  };
 
   $scope.imdbBar = function(score){
-    return { 'width' : score == 0 ? '100%' : score * 10 + '%' }
-  }
+    return { 'width' : score === 0 ? '100%' : score * 10 + '%' };
+  };
 
   $scope.suitableFor = SuitableFor;
 
   var orderBy = $filter('orderBy');
   $scope.orderMovies = function(predicate, reverse){
     $scope.movies = orderBy($scope.movies, predicate, reverse);
-  }
+  };
 });
 
 mov.controller('HeaderCtrl', function($scope, SuitableFor) {
@@ -78,7 +78,7 @@ mov.directive('bar', function(){
     templateUrl: 'templates/bar.html',
     controller: function($scope){
       $scope.validateScore = function(score){
-        if(score === "N/A"){
+        if(score === 'N/A'){
           return false;
         }
         else {
@@ -86,9 +86,38 @@ mov.directive('bar', function(){
         }
       };
       $scope.barWidth = function(score){
-        console.log(score)
-        return { 'width' : score + '%' }
-      }
+        var linear0100toMinMax = function(value, min, max){
+          var n = value * (max - min) / 100 + min;
+          return [Math.floor(n), Math.ceil(n)];
+        };
+        var interpolateColors = function(value, colors){
+          if(colors.length === 2){
+            return 'rgb(' +
+              linear0100toMinMax(value, colors[0].r, colors[1].r)[0] + ', ' +
+              linear0100toMinMax(value, colors[0].g, colors[1].g)[0] + ', ' +
+              linear0100toMinMax(value, colors[0].b, colors[1].b)[0] + ')';
+          }
+          else{
+            var numColors = colors.length - 1;
+            var colorIndexes = linear0100toMinMax(value, 0, numColors);
+            var newValue = (value - ((100 / numColors) * colorIndexes[0])) * numColors;
+            return interpolateColors(newValue, [colors[colorIndexes[0]], colors[colorIndexes[1]]]);
+          }
+        };
+        return {
+          'width' : score + '%',
+          'background-color' : interpolateColors(
+            score,
+            [
+              { r:215, g:0,   b:0   },
+              { r:240, g:160, b:40  },
+              { r:240, g:240, b:70  },
+              { r:60,  g:210, b:210 },
+              { r:0,   g:215, b:0   }
+            ]
+          )
+        };
+      };
     }
   };
 });
@@ -107,7 +136,7 @@ mov.filter('encodeUri', function ($window) {
 
 mov.filter('parseFloat', function () {
   return function(input, multiplyByTen){
-    return multiplyByTen ? (parseFloat(input) * 10) : (parseFloat(input))
+    return multiplyByTen ? (parseFloat(input) * 10) : (parseFloat(input));
   };
 });
 /* End Filters */

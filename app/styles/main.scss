@@ -146,9 +146,9 @@ header .vessel {
 }
 .rect {
   margin: 0 0 .5em 0;
-  background-color: lighten($barBlue, 65);
-  border: 1px solid $barBlue;
+  background-color: #eee;
   line-height: 1.6em;
+  text-shadow: 0 0 0.2em rgba(77, 77, 77, .37);
 }
 .rect s {
   display: block;
