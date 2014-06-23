@@ -21,15 +21,6 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
     });
   });
 
-
-  $scope.metacriticBar = function(score){
-    return { 'width' : score + '%' };
-  };
-
-  $scope.imdbBar = function(score){
-    return { 'width' : score === 0 ? '100%' : score * 10 + '%' };
-  };
-
   $scope.suitableFor = SuitableFor;
 
   var orderBy = $filter('orderBy');
