@@ -55,6 +55,27 @@ body {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+dl {
+  @extend .clearfix;
+  line-height: 1.2;
+}
+dt {
+  float: left;
+  width: 4.75em;
+  clear: left;
+  font-weight: 100;
+}
+dd {
+  float: left;
+  width: calc(100% - 4.75em);
+  margin: 0 0 .5em 0;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
 /* end Basline */
 
 
@@ -171,6 +192,10 @@ header .vessel {
 .text-block {
   border-bottom: 1px solid #ccc;
   padding: 0;
+
+  &:last-child {
+    border: none;
+  }
 }
 .text-block p {
   margin: 1em 0;
@@ -178,21 +203,10 @@ header .vessel {
 .smaller {
   font-size: .87em;
 }
+
 .details {
+  border-bottom: 1px solid #ccc;
   padding: 1em 0;
-  @extend .clearfix;
-  @extend .unlistify;
-}
-.details li {
-  float: left;
-  &:after {
-    content: '\b7';
-    margin: 0 .5em;
-  }
-  &:last-child:after {
-    content: '';
-    margin: auto;
-  }
 }
 /* end Modular */
 

@@ -20,12 +20,23 @@
         <div class='text-block smaller'>
           <p>{{movie.Actors}}</p>
         </div>
-        <ul class='details smaller'>
-          <li>{{movie.Genre}}</li>
-          <li>{{movie.Runtime}}</li>
-          <li>{{movie.Awards}}</li>
-          <li><a href='http://www.subdivx.com/index.php?buscar={{movie.Title | encodeUri}}&accion=5&masdesc=&subtitulos=1&realiza_b=1'>subs</a></li>
-        </ul>
+        <dl class='details smaller'>
+          <dt>Genre:</dt>
+          <dd>{{movie.Genre}}</dd>
+          <dt>Runtime:</dt>
+          <dd>{{movie.Runtime}}</dd>
+          <dt>Awards:</dt>
+          <dd>{{movie.Awards}}</dd>
+          <dt>Writer:</dt>
+          <dd>{{movie.Writer}}</dd>
+          <dt>Director:</dt>
+          <dd>{{movie.Director}}</dd>
+        </dl>
+        <div class='text-block smaller'>
+          <p>
+            <a href='http://www.subdivx.com/index.php?buscar={{movie.Title | encodeUri}}&accion=5&masdesc=&subtitulos=1&realiza_b=1'>subs</a>
+          </p>
+        </div>
       </div>
     </div>
   </li>
