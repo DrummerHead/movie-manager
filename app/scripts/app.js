@@ -130,6 +130,20 @@ mov.filter('parseFloat', function () {
     return multiplyByTen ? (parseFloat(input) * 10) : (parseFloat(input));
   };
 });
+
+mov.filter('minToHours', function () {
+  return function(input){
+    if(input === 'N/A'){
+      return input;
+    }
+    else{
+      var totalMins = parseFloat(input, 10);
+      var hours = Math.floor(totalMins / 60);
+      var mins = totalMins % 60;
+      return hours + ':' + (mins > 9 ? mins : '0' + mins);
+    }
+  };
+});
 /* End Filters */
 
 
