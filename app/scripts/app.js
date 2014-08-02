@@ -11,7 +11,7 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
     $scope.rawMovies = data;
     $scope.movies = [];
     $scope.rawMovies.forEach(function(el){
-      $http.jsonp('http://www.omdbapi.com/?i=' + el.id + '&callback=JSON_CALLBACK').then(function(result){
+      $http.jsonp('http://www.omdbapi.com/?i=' + el.id + '&tomatoes=true&callback=JSON_CALLBACK').then(function(result){
         result.data.suitable = el.suitable;
         if(result.data.imdbRating === 'N/A'){
           result.data.imdbRating = 0;

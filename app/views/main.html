@@ -9,10 +9,10 @@
           <h2>{{movie.Title}} <span>{{movie.Year}}</span></h2>
         </header>
         <div class='scores'>
-          <bar score-value='{{movie.imdbRating | parseFloat:true}}' score-label='{{movie.imdbRating}}' score-type='IMDB'>
-          </bar>
-          <bar score-value='{{movie.Metascore | parseFloat}}' score-label='{{movie.Metascore}}' score-type='Metascore'>
-          </bar>
+          <bar score-value='{{movie.imdbRating | parseFloat:true}}' score-label='{{movie.imdbRating}}' score-type='IMDB'></bar>
+          <bar score-value='{{movie.tomatoRating | parseFloat:true}}' score-label='{{movie.tomatoRating}}' score-type='tomatoRating'></bar>
+          <bar score-value='{{movie.Metascore | parseFloat}}' score-label='{{movie.Metascore}}' score-type='Metascore'></bar>
+          <bar score-value='{{movie.tomatoMeter | parseFloat}}' score-label='{{movie.tomatoMeter}}' score-type='tomatoMeter'></bar>
         </div>
         <div class='text-block'>
           <p>{{movie.Plot}}</p>
