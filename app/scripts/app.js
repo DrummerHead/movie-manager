@@ -2,6 +2,36 @@
 
 var mov = angular.module('mov', []);
 
+/* start where the fuck do I put this code */
+var normalizeScore = function(number, isHundred){
+  if(number !== 'N/A'){
+    if(isHundred){
+      return parseInt(number, 10);
+    }
+    else{
+      return (parseFloat(number) * 10);
+    }
+  }
+  else{
+    return NaN;
+  }
+};
+
+var averageScores = function(){
+  var scores = [];
+  for(var i = 0; i < arguments.length; i++){
+    if(!Number.isNaN(arguments[i])){
+      scores.push(arguments[i]);
+    }
+  }
+
+  var reduce = scores.reduce(function(prev, curr){
+    return prev + curr;
+  });
+  return reduce / scores.length;
+};
+/* end where the fuck do I put this code */
+
 /* Controllers
  * ========================================= */
 
@@ -13,9 +43,7 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
     $scope.rawMovies.forEach(function(el){
       $http.jsonp('http://www.omdbapi.com/?i=' + el.id + '&tomatoes=true&callback=JSON_CALLBACK').then(function(result){
         result.data.suitable = el.suitable;
-        if(result.data.imdbRating === 'N/A'){
-          result.data.imdbRating = 0;
-        }
+        result.data.average = averageScores(normalizeScore(result.data.Metascore, true), normalizeScore(result.data.imdbRating, false), normalizeScore(result.data.tomatoMeter, true), normalizeScore(result.data.tomatoRating, false));
         $scope.movies.push(result.data);
       });
     });
@@ -30,7 +58,7 @@ mov.controller('MainCtrl', function($scope, $http, $filter, GetRawList, Suitable
 });
 
 mov.controller('HeaderCtrl', function($scope, SuitableFor) {
-  $scope.humans = ['', 'Mom', 'DH', 'Pablo', 'Samus'];
+  $scope.humans = ['', 'Mom', 'DH', 'Pablo'];
   $scope.suitableFor = SuitableFor;
 });
 
@@ -64,7 +92,8 @@ mov.directive('bar', function(){
     scope: {
       scoreValue: '@',
       scoreLabel: '@',
-      scoreType: '@'
+      scoreType: '@',
+      barClass: '@'
     },
     templateUrl: 'templates/bar.html',
     controller: function($scope){
@@ -144,6 +173,13 @@ mov.filter('minToHours', function () {
     }
   };
 });
+
+mov.filter('round', function () {
+  return function(input){
+    return input !== 'N/A' ? Math.round(parseFloat(input) * 100) / 100 : input;
+  };
+});
+
 /* End Filters */
 
 

@@ -1,6 +1,6 @@
 <div class='vessel'>
 <ul id='movies'>
-  <li data-ng-repeat='movie in movies | filter : { suitable : suitableFor.selected } | orderBy : orderMovies(["imdbRating", "Metascore"], true)'>
+  <li data-ng-repeat='movie in movies | filter : { suitable : suitableFor.selected } | orderBy : orderMovies("average", true)'>
     <div class='movie'>
       <movie-poster movie='movie'>
       </movie-poster>
@@ -9,10 +9,27 @@
           <h2>{{movie.Title}} <span>{{movie.Year}}</span></h2>
         </header>
         <div class='scores'>
-          <bar score-value='{{movie.imdbRating | parseFloat:true}}' score-label='{{movie.imdbRating}}' score-type='IMDB'></bar>
-          <bar score-value='{{movie.tomatoRating | parseFloat:true}}' score-label='{{movie.tomatoRating}}' score-type='tomatoRating'></bar>
-          <bar score-value='{{movie.Metascore | parseFloat}}' score-label='{{movie.Metascore}}' score-type='Metascore'></bar>
-          <bar score-value='{{movie.tomatoMeter | parseFloat}}' score-label='{{movie.tomatoMeter}}' score-type='tomatoMeter'></bar>
+          <bar
+            score-value='{{movie.average | parseFloat}}'
+            score-label='{{movie.average | round}}'
+            score-type='Score'
+            bar-class='big-bar'></bar>
+          <bar
+            score-value='{{movie.imdbRating | parseFloat:true}}'
+            score-label='{{movie.imdbRating | round}}'
+            score-type='IMDB'></bar>
+          <bar
+            score-value='{{movie.tomatoRating | parseFloat:true}}'
+            score-label='{{movie.tomatoRating | round}}'
+            score-type='tomatoRating'></bar>
+          <bar
+            score-value='{{movie.Metascore | parseFloat}}'
+            score-label='{{movie.Metascore | round}}'
+            score-type='Metascore'></bar>
+          <bar
+            score-value='{{movie.tomatoMeter | parseFloat}}'
+            score-label='{{movie.tomatoMeter | round}}'
+            score-type='tomatoMeter'></bar>
         </div>
         <div class='text-block'>
           <p>{{movie.Plot}}</p>
