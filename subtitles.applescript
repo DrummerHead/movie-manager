@@ -28,6 +28,7 @@ tell application "System Events" to keystroke "n" using command down
 delay 1
 tell application "Firefox"
   open location "http://www.subdivx.com/"
+  open location "http://www.subswiki.com/"
   open location "http://engsub.net/"
   set properties of front window to {bounds: {1280, 0, 2560, 1440}}
 end tell

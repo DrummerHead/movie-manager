@@ -13,7 +13,10 @@ tell application "System Events" to keystroke "n" using command down
 delay 1
 tell application "Firefox"
   repeat with i from 1 to 20
-    open location "http://www.rlslog.net/category/movies/page/" & i & "/"
+    open location "http://www.scnsrc.me/category/films/page/" & i & "/"
+  end repeat
+  repeat with i from 1 to 20
+    open location "http://rlsbb.com/category/movies/page/" & i & "/"
   end repeat
   set properties of front window to {bounds: {0, 0, 1480, 1440}}
 end tell
