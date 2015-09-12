@@ -25,10 +25,11 @@ var averageScores = function(){
     }
   }
 
-  var reduce = scores.reduce(function(prev, curr){
+  var scoreAverage = scores.length ? scores.reduce(function(prev, curr){
     return prev + curr;
-  });
-  return reduce / scores.length;
+  }) / scores.length : 0;
+
+  return scoreAverage;
 };
 /* end where the fuck do I put this code */
 
