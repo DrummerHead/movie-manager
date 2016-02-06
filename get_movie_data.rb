@@ -1,6 +1,14 @@
 #!/usr/bin/env ruby
 
-omdb_paths = %x[find .. -name "*.omdb"].split("\n").reject{ |path| path =~ /_watched/}
+movie_paths = ['..', '/Volumes/DrummerDiskOSX/2016-01-31-macbook-pro-2012-backup/Downloads/Utorrent/_movies']
+
+def find_paths paths
+  paths.map do |path|
+    %x[find #{path} -name "*.omdb"].split("\n").reject{ |path| path =~ /_watched/}
+  end.reduce(:+)
+end
+
+omdb_paths = find_paths movie_paths
 
 omdb_files = []
 
