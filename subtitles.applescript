@@ -7,12 +7,12 @@ set thunderbolt_monitor_dimensions to {width: 2560, height: 1440}
 set thunderbolt_monitor_bounds to {0, 44, 2560, 1440}
 
 tell application "Finder"
-  open folder "Utorrent" of folder "Downloads" of folder "dh" of folder "Users" of startup disk of application "Finder"
+  open folder "torrent" of folder "Downloads" of folder "DrummerHead" of folder "Users" of startup disk of application "Finder"
   set properties of front window to {toolbar visible: false, current view: list view, bounds: {-719, 1000, 0, 1900}}
 end tell
 
 tell application "Terminal"
-  do script "cd /Users/dh/Downloads/Utorrent && ls"
+  do script "cd /Users/DrummerHead/Downloads/torrent && ls"
   set properties of front window to {size: {720, 900}, position: {-1440, 0}}
 end tell
 
